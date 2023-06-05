@@ -1,35 +1,26 @@
-var animalAPI = "https://api.api-ninjas.com/v1/animals?name=ANIMAL_HERE";
-var keyAnimals = "epzENF8Vuzg2XiYxDER5/g==LHqnoNfdprsV6lsX";
-var plantsAPI = "https://perenual.com/api/species-list?page=1&key=";
-var keyPlants = "sk-kDQd647e4a0a7cc661162";
-var animalName = 'frog';
-animalAPI = "https://api.api-ninjas.com/v1/animals?name=" + animalName;
-plantsAPI = "https://perenual.com/api/species-list?key=" + keyPlants;
+// function getData() {
+//   fetch("https://api.jikan.moe/v3/anime/1")
+//     .then(function (response) {
+//       return response.json();
+//     })
+//     .then(function (data) {
+//       // Process the data returned from the API
+//       console.log(data);
+//       //displays data on page
+//       var title = data.title;
+//       var synopsis = data.synopsis;
+//       var imageUrl = data.image_url;
 
-//gets an animal from an api
-function getAnimal(){
-    fetch(animalAPI, {
-        method: 'GET',
-        url: 'https://api.api-ninjas.com/v1/animals?name=cheetah',
-        headers: { 'X-Api-Key': keyAnimals},
-        contentType: 'application/json',
-        })
-        .then(function (response){
-            return response.json();
-        })
-        .then(function (data){
-            console.log(data);
-        });
-}
+//       // Displays the fetched data on the web page
+//       var titleElement = document.getElementById("title");
+//       var synopsisElement = document.getElementById("synopsis");
+//       var imageElement = document.getElementById("image");
 
-//gets a plant from an api
-function getPlant(){
-    fetch(plantsAPI)
-    .then(function (response){
-        return response.json();
-    })
-    .then(function (data){
-        console.log(data);
-    });
-}
-
+//       titleElement.textContent = title;
+//       synopsisElement.textContent = synopsis;
+//       imageElement.src = imageUrl;
+//     })
+//     .catch(function (error) {
+//       console.error("Error:", error);
+//     });
+// }
