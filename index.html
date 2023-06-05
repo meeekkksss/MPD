@@ -4,12 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="assets/css/styles.css">
     <title>MPD</title>
 </head>
 <body>
-    
+    <h1 id="title">MPD</h1>
+    <p id="synopsis">synopsis</p>
+    <img id="image" src="https://images.unsplash.com/photo-1545569341-9eb8b30979d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8a3lvdG98ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=400&q=60" alt="Anime Image" >
+
+    <!-- button to trigger API request -->
+    <button onclick="getData()">GET ANIME!</button>
 </body>
 <script src="assets/js/script.js"></script>
 </html>
