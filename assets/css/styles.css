@@ -1,3 +1,4 @@
+
 /* root colors */
 :root{
   --wh: white;
@@ -6,6 +7,10 @@
 /* imported bulma */
 @import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
 /* google font Paytone */
+
+@import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
+
+
 @import url('https://fonts.googleapis.com/css2?family=Paytone+One&display=swap');
 
 *{
@@ -23,6 +28,12 @@ body{
   background-size: cover;
 }
 
+
 .hero  .title{
   color: var(--wh);
+}
+
+section p .title{
+  color: white;
+
 }
