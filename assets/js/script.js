@@ -58,10 +58,9 @@ function generateSandwich(){
     var1 = tempArr1[randNum(tempArr1.length)];
     var2 = tempArr2[randNum(tempArr2.length)];
 
-    var returnString = "Bon appettit! Here's is your" + var1 + "and" + var2 + "sandwich!" + "\nWhat a delectable dish!";
+    var returnString = "Bon appettit! Here's is your " + var1 + " and " + var2 + " sandwich! " + "\nWhat a delectable dish!";
+    console.log(returnString);
     return returnString;
 }
-
-
 
 submitBtn.addEventListener('click', generateSandwich);
