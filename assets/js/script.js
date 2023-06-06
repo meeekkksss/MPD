@@ -1,46 +1,42 @@
-var animalAPI = "https://api.api-ninjas.com/v1/animals?name=ANIMAL_HERE";
+var animalAPI = "https://api.gbif.org/v1/species/"; //the end should add an integer for a random animal. it will output
 var keyAnimals = "epzENF8Vuzg2XiYxDER5/g==LHqnoNfdprsV6lsX";
 var plantsAPI = "https://perenual.com/api/species-list?page=1&key=";
 var keyPlants = "sk-kDQd647e4a0a7cc661162";
-var animalName = 'frog';
 var plantsPageRange = 377; //last page of the plants API that we are using
+var animalsRange = 8000;
 
 var myPlant = '';
-var myAnimal = '';
+var myAnimal = 'pig';
 
-
-
-animalAPI = "https://api.api-ninjas.com/v1/animals?name=" + animalName;
 plantsAPI = "https://perenual.com/api/species-list?page=1&key=" + keyPlants;
-
 
 //gives a random number between 0 and num, not including num
 function randNum(num){
     return Math.floor(Math.random() * num);
 }
 
-
-//gets an animal from an api
 function getAnimal(num){
-    fetch(animalAPI, {
-        method: 'GET',
-        url: 'https://api.api-ninjas.com/v1/animals?name=cheetah',
-        headers: { 'X-Api-Key': keyAnimals},
-        contentType: 'application/json',
-        })
+    fetch(animalAPI + num)
         .then(function (response){
             return response.json();
         })
         .then(function (data){
-            console.log(data);
+            console.log("Searching...");
+            //checks that the data contents is an animal
+            // if((data.class != 'Aves') || (data.class != 'Mammalia') || (data.class != 'Vertebrata')){ 
+            //     getAnimal(randNum(animalsRange));
+            // } else { 
+            //     console.log(data);
+            //     console.log(data.scientificName); 
+            // }
         });
 }
 
 //gets a plant from an api
 function getPlant(num){
-    var plantsPage = plantsAPI.replace("page=1", "page=" + num)
-    console.log("My Page: " + plantsPage);
-    fetch(plantsPage)
+    var plantPage = plantsAPI.replace("page=1", "page=" + num)
+    console.log("My Page: " + plantPage);
+    fetch(plantPage)
     .then(function (response){
         return response.json();
     })
@@ -51,7 +47,8 @@ function getPlant(num){
 }
 
 function generateIngredients(){
-    getPlant(randNum(plantsPageRange));
+    // getPlant(randNum(plantsPageRange));
+    getAnimal(randNum(animalsRange));
 }
 
 generateIngredients();  
@@ -81,3 +78,22 @@ function generateSandwich(){
 }
 
 submitBtn.addEventListener('click', generateSandwich);
+
+/* ===== CODE GRAVEYARD =====
+//gets an animal from an api
+// function getAnimal(num){
+//     // var animalPage = animalAPI.replace("name=", "name=" + myAnimal);
+//     fetch(animalAPI, {
+//         method: 'GET',
+//         url: animalAPI,
+//         headers: { 'X-Api-Key': keyAnimals},
+//         contentType: 'application/json',
+//         })
+//         .then(function (response){
+//             return response.json();
+//         })
+//         .then(function (data){
+//             console.log(data);
+//         });
+// }
+*/
