@@ -1,13 +1,13 @@
 var animalAPI = "https://api.api-ninjas.com/v1/animals?name=ANIMAL_HERE";
 var keyAnimals = "epzENF8Vuzg2XiYxDER5/g==LHqnoNfdprsV6lsX";
-var plantsAPI = "";
-var keyPlants = "";
+var plantsAPI = "https://perenual.com/api/species-list?page=1&key=";
+var keyPlants = "sk-kDQd647e4a0a7cc661162";
 var animalName = 'frog';
 animalAPI = "https://api.api-ninjas.com/v1/animals?name=" + animalName;
-plantsAPI = "" + keyPlants;
+plantsAPI = "https://perenual.com/api/species-list?key=" + keyPlants;
 
-//feel free to remove/rename this function. this one is only for testing purposes
-function tempFunc(){
+//gets an animal from an api
+function getAnimal(){
     fetch(animalAPI, {
         method: 'GET',
         url: 'https://api.api-ninjas.com/v1/animals?name=cheetah',
@@ -22,6 +22,14 @@ function tempFunc(){
         });
 }
 
-tempFunc();
-
+//gets a plant from an api
+function getPlant(){
+    fetch(plantsAPI)
+    .then(function (response){
+        return response.json();
+    })
+    .then(function (data){
+        console.log(data);
+    });
+}
 
