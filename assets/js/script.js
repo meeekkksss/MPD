@@ -1,3 +1,13 @@
+
+
+var animalAPI = "https://api.api-ninjas.com/v1/animals?name=ANIMAL_HERE";
+var keyAnimals = "epzENF8Vuzg2XiYxDER5/g==LHqnoNfdprsV6lsX";
+var plantsAPI = "";
+var keyPlants = "";
+var animalName = "frog";
+animalAPI = "https://api.api-ninjas.com/v1/animals?name=" + animalName;
+plantsAPI = "" + keyPlants;
+
 var animalAPI = "https://api.api-ninjas.com/v1/animals?name=ANIMAL_HERE";
 var keyAnimals = "epzENF8Vuzg2XiYxDER5/g==LHqnoNfdprsV6lsX";
 var plantsAPI = "https://perenual.com/api/species-list?page=1&key=";
@@ -8,6 +18,7 @@ var animalName = "frog";
 
 animalAPI = "https://api.api-ninjas.com/v1/animals?name=" + animalName;
 plantsAPI = "https://perenual.com/api/species-list?key=" + keyPlants;
+
 
 
 //gives a random number between 0 and num, not including num
@@ -38,8 +49,13 @@ function getPlant(){
     .then(function (response){
         return response.json();
     })
+  
+    .then(function (data) {
+      console.log(data);
+
     .then(function (data){
         console.log(data);
+
     });
 }
 
