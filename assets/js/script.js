@@ -7,47 +7,59 @@ var animalName = "frog";
 animalAPI = "https://api.api-ninjas.com/v1/animals?name=" + animalName;
 plantsAPI = "" + keyPlants;
 
-//feel free to remove/rename this function. this one is only for testing purposes
-function tempFunc() {
-  fetch(animalAPI, {
-    method: "GET",
-    url: "https://api.api-ninjas.com/v1/animals?name=cheetah",
-    headers: { "X-Api-Key": keyAnimals },
-    contentType: "application/json",
-  })
-    .then(function (response) {
-      return response.json();
+
+//gives a random number between 0 and num, not including num
+function randNum(num){
+    return Math.floor(Math.random() * num);;
+}
+
+
+//gets an animal from an api
+function getAnimal(){
+    fetch(animalAPI, {
+        method: 'GET',
+        url: 'https://api.api-ninjas.com/v1/animals?name=cheetah',
+        headers: { 'X-Api-Key': keyAnimals},
+        contentType: 'application/json',
+        })
+        .then(function (response){
+            return response.json();
+        })
+        .then(function (data){
+            console.log(data);
+        });
+}
+
+//gets a plant from an api
+function getPlant(){
+    fetch(plantsAPI)
+    .then(function (response){
+        return response.json();
     })
     .then(function (data) {
       console.log(data);
     });
 }
 
-tempFunc();
+
+var submitBtn = document.getElementById('submit-btn');
+
+//generates the sandwich string to be placed onto the page
+function generateSandwich(){
+    var tempArr1 = ['horse', 'frog', 'panda', 'elephant', 'capybara'];
+    var tempArr2 = ['eucalyptus', 'basil', 'evergreen', 'crab grass', 'leeks'];
+    var var1;
+    var var2;
+    
+    //need to pull 1 random animal and 1 random plant from each database
+    //this code will replicate that process but will likely be placed elsewhere
+    var1 = tempArr1[randNum(tempArr1.length)];
+    var2 = tempArr2[randNum(tempArr2.length)];
+
+    var returnString = "Bon appettit! Here's is your" + var1 + "and" + var2 + "sandwich!" + "\nWhat a delectable dish!";
+    return returnString;
+}
 
 
-// // temp function 
-// const axios = require("axios");
 
-// const options = {
-//   method: "GET",
-//   url: "https://plants2.p.rapidapi.com/api/plants",
-//   params: {
-//     id: "63ef4eb7476230641c4c0d62",
-//   },
-//   headers: {
-//     Authorization:
-//       "GKZOHNZj0xP65kk0BAE2Tl9LGagm0pfD3DFNxAEEZcMQBhRZVDco8vbNJdnwwCo0",
-//     "X-RapidAPI-Key": "98093986c1mshbfa8f9e3eccd4c9p12077ejsncf3d0f12ce42",
-//     "X-RapidAPI-Host": "plants2.p.rapidapi.com",
-//   },
-// };
-
-// try {
-//   const response = await axios.request(options);
-//   console.log(response.data);
-// } catch (error) {
-//   console.error(error);
-// }
-
-
+submitBtn.addEventListener('click', generateSandwich);
