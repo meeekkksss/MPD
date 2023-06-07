@@ -8,12 +8,6 @@ var plantsAPI = "https://perenual.com/api/species-list?page=1&key=";
 var keyPlants = "sk-kDQd647e4a0a7cc661162";
 var animalName = 'frog';
 var plantsPageRange = 377; //last page of the plants API that we are using
-<<<<<<< HEAD
-
-var plantsEntryRange = 30;
-var animalsRange = 8000;
-=======
->>>>>>> f7c6e57 (program is now capable of choosing a random page on each load for selecting a plant)
 
 var outputBox = document.getElementById('output-box');
  
