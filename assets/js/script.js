@@ -29,6 +29,7 @@ function getAnimal(num){
             //     console.log(data);
             //     console.log(data.scientificName); 
             // }
+            console.log(data);
         });
 }
 
