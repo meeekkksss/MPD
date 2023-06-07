@@ -113,12 +113,7 @@ function init(){
 =======
       console.log(data);
     })
-    .then(function (data){
-        console.log(data);
-        
-        
->>>>>>> f7c6e57 (program is now capable of choosing a random page on each load for selecting a plant)
-    });
+    
 }
 
 //this function will run when the page is opened
