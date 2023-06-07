@@ -6,16 +6,23 @@ var animalAPI = "https://api.gbif.org/v1/species/"; //the end should add an inte
 var keyAnimals = "epzENF8Vuzg2XiYxDER5/g==LHqnoNfdprsV6lsX";
 var plantsAPI = "https://perenual.com/api/species-list?page=1&key=";
 var keyPlants = "sk-kDQd647e4a0a7cc661162";
+var animalName = 'frog';
 var plantsPageRange = 377; //last page of the plants API that we are using
+<<<<<<< HEAD
 
 var plantsEntryRange = 30;
 var animalsRange = 8000;
+=======
+>>>>>>> f7c6e57 (program is now capable of choosing a random page on each load for selecting a plant)
 
 var outputBox = document.getElementById('output-box');
-
+ 
 var myPlant = '';
 var myAnimal = '';
 
+
+
+animalAPI = "https://api.api-ninjas.com/v1/animals?name=" + animalName;
 plantsAPI = "https://perenual.com/api/species-list?page=1&key=" + keyPlants;
 
 var myPlant = '';
@@ -38,8 +45,15 @@ function randNum(num){
     return Math.floor(Math.random() * num);
 }
 
+
+//gets an animal from an api
 function getAnimal(num){
-    fetch(animalAPI + num)
+    fetch(animalAPI, {
+        method: 'GET',
+        url: 'https://api.api-ninjas.com/v1/animals?name=cheetah',
+        headers: { 'X-Api-Key': keyAnimals},
+        contentType: 'application/json',
+        })
         .then(function (response){
             console.log("Testing...");
             console.log(response);
@@ -76,17 +90,25 @@ function getAnimal(num){
 }
 
 //gets a plant from an api
+<<<<<<< HEAD
 
 function getPlant(num1, num2){
     var plantPage = plantsAPI.replace("page=1", "page=" + num1)
 >>>>>>> main
     console.log("My Page: " + plantPage);
     fetch(plantPage)
+=======
+function getPlant(num){
+    var plantsPage = plantsAPI.replace("page=1", "page=" + num)
+    console.log("My Page: " + plantsPage);
+    fetch(plantsPage)
+>>>>>>> f7c6e57 (program is now capable of choosing a random page on each load for selecting a plant)
     .then(function (response){
         return response.json();
     })
   
     .then(function (data) {
+<<<<<<< HEAD
 
       console.log(data);
     })
@@ -116,6 +138,14 @@ function init(){
         console.log('Plant: ' + myPlant);
     }
     
+=======
+      console.log(data);
+    })
+    .then(function (data){
+        console.log(data);
+        
+        
+>>>>>>> f7c6e57 (program is now capable of choosing a random page on each load for selecting a plant)
     });
 }
 
@@ -123,10 +153,7 @@ function init(){
 //this function will also run after the click event is resolved
 //this function pre-generates the sandwich before the user click
 function generateIngredients(){
-    getPlant(randNum(plantsPageRange), randNum(plantsEntryRange));
-    // setTimeout(getAnimal(208), 3000); | this is testing out the timeout function
-    // getAnimal(208); | this is a dead link
-    getAnimal(randNum(animalsRange));
+    getPlant(randNum(plantsPageRange));
 }
 
 
