@@ -45,11 +45,7 @@ function getPlant(num){
     .then(function (data) {
       console.log(data);
     })
-    .then(function (data){
-        console.log(data);
-        
-        
-    });
+    
 }
 
 function generateIngredients(){
