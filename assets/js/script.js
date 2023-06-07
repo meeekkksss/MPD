@@ -8,7 +8,6 @@ var plantsAPI = "https://perenual.com/api/species-list?page=1&key=";
 var keyPlants = "sk-kDQd647e4a0a7cc661162";
 var plantsPageRange = 377; //last page of the plants API that we are using
 var animalsRange = 8000;
-
 var outputBox = document.getElementById('output-box');
  
 var myPlant = '';
@@ -59,17 +58,7 @@ function getAnimal(num){
             //     console.log(data);
             //     console.log(data.scientificName); 
             // }
-
             console.log(data);
-
-            // console.log(data);
-            if(data === undefined){ 
-                getAnimal(randNum(animalsRange)); 
-            } else {
-                myAnimal = data.scientificName;
-                console.log('Animal: ' + myAnimal);
-            }
-
         });
 }
 
