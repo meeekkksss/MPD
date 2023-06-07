@@ -9,7 +9,7 @@ var animalsRange = 8000;
 var outputBox = document.getElementById('output-box');
 
 var myPlant = '';
-var myAnimal = 'pig';
+var myAnimal = '';
 
 plantsAPI = "https://perenual.com/api/species-list?page=1&key=" + keyPlants;
 
@@ -36,8 +36,8 @@ function getAnimal(num){
             console.log("Testing...");
             console.log(response);
             // v check if page exists v
-            if(response.status == 404){ 
-                getAnimal(randNum(animalsRange)); 
+            if(response.status == 404){  
+                return undefined;
             } else { return response.json(); }
         })
         .then(function (data){
@@ -50,8 +50,12 @@ function getAnimal(num){
             //     console.log(data.scientificName); 
             // }
             // console.log(data);
-            myAnimal = data.scientificName;
-            console.log('Animal: ' + myAnimal);
+            if(data === undefined){ 
+                getAnimal(randNum(animalsRange)); 
+            } else {
+                myAnimal = data.scientificName;
+                console.log('Animal: ' + myAnimal);
+            }
         });
 }
 
@@ -84,8 +88,8 @@ function getPlant(num1, num2){
 //this function pre-generates the sandwich before the user click
 function generateIngredients(){
     getPlant(randNum(plantsPageRange), randNum(plantsEntryRange));
-    // setTimeout(getAnimal(208), 3000);
-    // getAnimal(208);
+    // setTimeout(getAnimal(208), 3000); | this is testing out the timeout function
+    // getAnimal(208); | this is a dead link
     getAnimal(randNum(animalsRange));
 }
 
