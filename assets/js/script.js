@@ -1,7 +1,4 @@
-
 // Animal+ Plants API
-
->>>>>>> main
 var animalAPI = "https://api.gbif.org/v1/species/"; //the end should add an integer for a random animal. it will output
 var keyAnimals = "epzENF8Vuzg2XiYxDER5/g==LHqnoNfdprsV6lsX";
 var plantsAPI = "https://perenual.com/api/species-list?page=1&key=";
