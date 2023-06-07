@@ -3,12 +3,27 @@ var keyAnimals = "epzENF8Vuzg2XiYxDER5/g==LHqnoNfdprsV6lsX";
 var plantsAPI = "https://perenual.com/api/species-list?page=1&key=";
 var keyPlants = "sk-kDQd647e4a0a7cc661162";
 var plantsPageRange = 377; //last page of the plants API that we are using
+var plantsEntryRange = 30;
 var animalsRange = 8000;
 
+var outputBox = document.getElementById('output-box');
+
 var myPlant = '';
-var myAnimal = 'pig';
+var myAnimal = '';
 
 plantsAPI = "https://perenual.com/api/species-list?page=1&key=" + keyPlants;
+
+
+function testFunction(){
+    fetch("https://api.gbif.org/v1/occurrence/search?kingdom=animalia?class=mammalia/")
+        .then(function (response){
+            return response.json();
+        })
+        .then(function (data){
+            console.log(data);
+        });
+}
+// testFunction();
 
 //gives a random number between 0 and num, not including num
 function randNum(num){
@@ -18,10 +33,15 @@ function randNum(num){
 function getAnimal(num){
     fetch(animalAPI + num)
         .then(function (response){
-            return response.json();
+            console.log("Testing...");
+            console.log(response);
+            // v check if page exists v
+            if(response.status == 404){  
+                return undefined;
+            } else { return response.json(); }
         })
         .then(function (data){
-            console.log("Searching...");
+            // console.log("Searching...");
             //checks that the data contents is an animal
             // if((data.class != 'Aves') || (data.class != 'Mammalia') || (data.class != 'Vertebrata')){ 
             //     getAnimal(randNum(animalsRange));
@@ -29,12 +49,19 @@ function getAnimal(num){
             //     console.log(data);
             //     console.log(data.scientificName); 
             // }
+            // console.log(data);
+            if(data === undefined){ 
+                getAnimal(randNum(animalsRange)); 
+            } else {
+                myAnimal = data.scientificName;
+                console.log('Animal: ' + myAnimal);
+            }
         });
 }
 
 //gets a plant from an api
-function getPlant(num){
-    var plantPage = plantsAPI.replace("page=1", "page=" + num)
+function getPlant(num1, num2){
+    var plantPage = plantsAPI.replace("page=1", "page=" + num1)
     console.log("My Page: " + plantPage);
     fetch(plantPage)
     .then(function (response){
@@ -42,62 +69,47 @@ function getPlant(num){
     })
   
     .then(function (data) {
-      console.log(data);
-    })
-    .then(function (data){
-        console.log(data);
-        
+    //   console.log(data);
+    //   console.log("Our Plant:");
+    //   console.log(num2);
+    //   console.log(data.data[num2]);
+    if(data.data[num2] == undefined){ 
+        getPlant(randNum(plantsPageRange), num2); 
+    } else { 
+        myPlant = data.data[num2].common_name;
+        console.log('Plant: ' + myPlant);
+    }
+    
     });
 }
 
+//this function will run when the page is opened
+//this function will also run after the click event is resolved
+//this function pre-generates the sandwich before the user click
 function generateIngredients(){
-    // getPlant(randNum(plantsPageRange));
+    getPlant(randNum(plantsPageRange), randNum(plantsEntryRange));
+    // setTimeout(getAnimal(208), 3000); | this is testing out the timeout function
+    // getAnimal(208); | this is a dead link
     getAnimal(randNum(animalsRange));
 }
 
-generateIngredients();  
 
 //pre generate the next sandwich
 function init(){
-
+    generateIngredients();  
 }
+
+init();
 
 var submitBtn = document.getElementById('submit-btn');
 
 //generates the sandwich string to be placed onto the page
-function generateSandwich(){
-    var tempArr1 = ['horse', 'frog', 'panda', 'elephant', 'capybara'];
-    var tempArr2 = ['eucalyptus', 'basil', 'evergreen', 'crab grass', 'leeks'];
-    var var1;
-    var var2;
-    
+function generateSandwich(){   
     //need to pull 1 random animal and 1 random plant from each database
     //this code will replicate that process but will likely be placed elsewhere
-    var1 = tempArr1[randNum(tempArr1.length)];
-    var2 = tempArr2[randNum(tempArr2.length)];
-
-    var returnString = "Bon appettit! Here's is your " + var1 + " and " + var2 + " sandwich! " + "\nWhat a delectable dish!";
-    console.log(returnString);
-    return returnString;
+    var sandwichMsg = "Bon appettit! We call this one " + myAnimal + " con " + myPlant + " sandwich! " + "\nEnjoy your scrumptuous sandwich!";
+    outputBox.textContent = sandwichMsg;
+    init();
 }
 
 submitBtn.addEventListener('click', generateSandwich);
-
-/* ===== CODE GRAVEYARD =====
-//gets an animal from an api
-// function getAnimal(num){
-//     // var animalPage = animalAPI.replace("name=", "name=" + myAnimal);
-//     fetch(animalAPI, {
-//         method: 'GET',
-//         url: animalAPI,
-//         headers: { 'X-Api-Key': keyAnimals},
-//         contentType: 'application/json',
-//         })
-//         .then(function (response){
-//             return response.json();
-//         })
-//         .then(function (data){
-//             console.log(data);
-//         });
-// }
-*/
