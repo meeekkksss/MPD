@@ -1,12 +1,8 @@
-
-// Animal+ Plants API
-
 var animalAPI = "https://api.gbif.org/v1/species/"; //the end should add an integer for a random animal. it will output
 var keyAnimals = "epzENF8Vuzg2XiYxDER5/g==LHqnoNfdprsV6lsX";
 var plantsAPI = "https://perenual.com/api/species-list?page=1&key=";
 var keyPlants = "sk-kDQd647e4a0a7cc661162";
 var plantsPageRange = 377; //last page of the plants API that we are using
-
 var plantsEntryRange = 30;
 var animalsRange = 8000;
 
@@ -17,39 +13,22 @@ var myAnimal = "";
 
 plantsAPI = "https://perenual.com/api/species-list?page=1&key=" + keyPlants;
 
-
+//using this to test the API
 function testFunction() {
-  fetch(
-    "https://api.gbif.org/v1/occurrence/search?kingdom=animalia?class=mammalia/"
-  )
+  fetch("https://api.gbif.org/v1/species/search?rank=class&limit=1000")
     .then(function (response) {
       return response.json();
     })
     .then(function (data) {
       console.log(data);
     });
-
-var myPlant = '';
-var myAnimal = 'pig';
-
-function testFunction(){
-    fetch("https://api.gbif.org/v1/occurrence/search?kingdom=animalia?class=mammalia/")
-        .then(function (response){
-            return response.json();
-        })
-        .then(function (data){
-            console.log(data);
-        });
-
 }
-// testFunction();
-
+testFunction();
 
 //gives a random number between 0 and num, not including num
 function randNum(num) {
   return Math.floor(Math.random() * num);
 }
-
 
 function getAnimal(num) {
   fetch(animalAPI + num)
@@ -89,58 +68,9 @@ function getPlant(num1, num2) {
   fetch(plantPage)
     .then(function (response) {
       return response.json();
-
-function getAnimal(num){
-    fetch(animalAPI + num)
-        .then(function (response){
-            console.log("Testing...");
-            console.log(response);
-            // v check if page exists v
-            if(response.status == 404){  
-                return undefined;
-            } else { return response.json(); }
-        })
-        .then(function (data){
-
-            console.log("Searching...");
-
-            // console.log("Searching...");
-
-            //checks that the data contents is an animal
-            // if((data.class != 'Aves') || (data.class != 'Mammalia') || (data.class != 'Vertebrata')){ 
-            //     getAnimal(randNum(animalsRange));
-            // } else { 
-            //     console.log(data);
-            //     console.log(data.scientificName); 
-            // }
-
-            console.log(data);
-
-            // console.log(data);
-            if(data === undefined){ 
-                getAnimal(randNum(animalsRange)); 
-            } else {
-                myAnimal = data.scientificName;
-                console.log('Animal: ' + myAnimal);
-            }
-
-        });
-}
-
-//gets a plant from an api
-
-function getPlant(num1, num2){
-    var plantPage = plantsAPI.replace("page=1", "page=" + num1)
-
-    console.log("My Page: " + plantPage);
-    fetch(plantPage)
-    .then(function (response){
-        return response.json();
-
     })
 
     .then(function (data) {
-
       //   console.log(data);
       //   console.log("Our Plant:");
       //   console.log(num2);
@@ -148,33 +78,6 @@ function getPlant(num1, num2){
       if (data.data[num2] == undefined) {
         getPlant(randNum(plantsPageRange), num2);
       } else {
-
-
-      console.log(data);
-    })
-    
-}
-
-function generateIngredients(){
-    // getPlant(randNum(plantsPageRange));
-    getAnimal(randNum(animalsRange));
-}
-
-generateIngredients();  
-
-//pre generate the next sandwich
-function init(){
-
-}
-
-    //   console.log(data);
-    //   console.log("Our Plant:");
-    //   console.log(num2);
-    //   console.log(data.data[num2]);
-    if(data.data[num2] == undefined){ 
-        getPlant(randNum(plantsPageRange), num2); 
-    } else { 
-
         myPlant = data.data[num2].common_name;
         console.log("Plant: " + myPlant);
       }
@@ -196,12 +99,9 @@ function init() {
   generateIngredients();
 }
 
-init();
+// init();
 
-
-
-var submitBtn = document.getElementById('submit-btn');
-
+var submitBtn = document.getElementById("submit-btn");
 
 //generates the sandwich string to be placed onto the page
 function generateSandwich() {
@@ -218,34 +118,4 @@ function generateSandwich() {
   init();
 }
 
-
 submitBtn.addEventListener("click", generateSandwich);
-
-submitBtn.addEventListener("click", function () {
-  localStorage.setItem("myPlant", myPlant);
-  localStorage.setItem("myAnimal", myAnimal);
-});
-
-submitBtn.addEventListener('click', generateSandwich);
-
-/* ===== CODE GRAVEYARD =====
-//gets an animal from an api
-// function getAnimal(num){
-//     // var animalPage = animalAPI.replace("name=", "name=" + myAnimal);
-//     fetch(animalAPI, {
-//         method: 'GET',
-//         url: animalAPI,
-//         headers: { 'X-Api-Key': keyAnimals},
-//         contentType: 'application/json',
-//         })
-//         .then(function (response){
-//             return response.json();
-//         })
-//         .then(function (data){
-//             console.log(data);
-//         });
-// }
-*/
-// function to generate images 
-   
-
