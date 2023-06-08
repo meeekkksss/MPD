@@ -73,24 +73,27 @@ function init() {
 
 init();
 
-var submitBtn = document.getElementById("submit-btn");
+var submitBtn = document.getElementById('submit-btn');
+var resubmitBtn = document.getElementById('resubmit-btn');
 
 //generates the sandwich string to be placed onto the page
-function generateSandwich() {
-  //need to pull 1 random animal and 1 random plant from each database
-  //this code will replicate that process but will likely be placed elsewhere
-  var sandwichMsg =
-    "Bon appettit! We call this one " +
-    myAnimal +
-    " con " +
-    myPlant +
-    " sandwich! " +
-    "\nEnjoy your scrumptuous sandwich!";
-  outputBox.textContent = sandwichMsg;
-  init();
+function generateSandwich(){   
+    //need to pull 1 random animal and 1 random plant from each database
+    //this code will replicate that process but will likely be placed elsewhere
+    submitBtn.setAttribute
+    var sandwichMsg = `Bon appettit! We call this one ${myAnimal} con ${myPlant} sandwich!\nEnjoy your scrumptuous sandwich!`;
+    outputBox.textContent = sandwichMsg;
+    init();
+    setTimeout(testFunc, 10000);
 }
 
 submitBtn.addEventListener("click", generateSandwich);
+
+function testFunc(){
+  console.log(`Testing`);
+}
+
+
 submitBtn.addEventListener("click", function () {
   localStorage.setItem("myPlant", myPlant);
   localStorage.setItem("myAnimal", myAnimal);
