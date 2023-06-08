@@ -22,10 +22,12 @@ box-sizing: border-box;
 
 body{
   background-image: url("https://images.unsplash.com/photo-1499028344343-cd173ffc68a9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80");
-  height: 100;
+  /* added "vh" unit to ensure full viewport height */
+  height: 100vh; 
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  padding-top: 4rem;
 }
 
 
@@ -33,7 +35,18 @@ body{
   color: var(--wh);
 }
 
-section p .title{
+section p.title{
   color: white;
+}
+
+.navbar {
+  position:fixed;
+  width: 100%;
+  z-index: 999;
+}
+
+.hero {
+  margin-top: 4rem;
+  padding-top: 3rem;
 
 }
