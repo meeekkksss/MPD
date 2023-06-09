@@ -85,7 +85,6 @@ submitBtn.addEventListener("click", function (){
   audio.play();
 })
 
-
 //generates the sandwich string to be placed onto the page
 function generateSandwich(){   
     //need to pull 1 random animal and 1 random plant from each database
