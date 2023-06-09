@@ -14,7 +14,7 @@ var taxonPlants = 6;
 var animalAPI =
   "https://api.gbif.org/v1/species/search?rank=SPECIES&highertaxon_key=359&limit=100&offset=0";
 
-const searchHistory = [""];
+const searchHistory = [];
 var historyNumber = 6;
 
 var outputBox = document.getElementById("output-box");
@@ -73,15 +73,27 @@ function generateIngredients() {
 //a box containing their last six generated sandwiches
 function populateHistory() {
   for (var i = 0; i < searchHistory.length; i++) {
-    var currentEl = document.getElementById(`history-${i}`);
+    var currentEl = document.getElementById(`sandwich-${i}`);
     currentEl.textContent = searchHistory[i];
   }
+}
+
+function savingHistory() {
+  var saveData = JSON.stringify(searchHistory);
+  localStorage.setItem("mySandwiches", saveData);
+}
+
+function loadHistory() {
+  var loadData = JSON.parse(localStorage.getItem("mySandwiches"));
+  console.log(loadData);
+  populateHistory();
 }
 
 //pre generate the next sandwich
 function init() {
   populateHistory();
   generateIngredients();
+  loadHistory();
 }
 
 init();
@@ -98,14 +110,16 @@ function generateSandwich() {
   outputBox.textContent = sandwichMsg;
   init();
   setTimeout(testFunc, 10000);
-  localStorage.setItem("myPlant", myPlant);
-  localStorage.setItem("myAnimal", myAnimal);
 
   //appending previous sandwich ingredients to array
   var sandwichIng = myAnimal + " con " + myPlant;
-  if (searchHistory.length < historyNumber) {
-    searchHistory.unshift(sandwichIng);
+  
+  while (searchHistory.length >= historyNumber) {
+    searchHistory.pop();
   }
+  searchHistory.unshift(sandwichIng);
+
+  savingHistory();
 }
 
 submitBtn.addEventListener("click", generateSandwich);
