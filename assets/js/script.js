@@ -6,6 +6,7 @@ var plantsOffset = 5000;
 var dataRange = 100;
 var taxonMammals = 359;
 var taxonPlants = 6;
+
 var animalAPI =
   "https://api.gbif.org/v1/species/search?rank=SPECIES&highertaxon_key=359&limit=100&offset=0";
 
@@ -100,14 +101,15 @@ function init() {
   generateIngredients();
   submitSection.appendChild(loadingPlaceholder);
   setTimeout(unhideButton, hiddenTimer);
+
   loadHistory();
+
 }
 
 //function to run on startup
 init();
 
-var submitBtn = document.getElementById("submit-btn");
-var resubmitBtn = document.getElementById("resubmit-btn");
+
 
 // animal audio will play when user clicks on button 
 submitBtn.addEventListener("click", function (){
@@ -132,6 +134,7 @@ function generateSandwich(){
     //store sandwich onto local storage
     localStorage.setItem("myPlant", myPlant);
 
+
   //appending previous sandwich ingredients to array
   var sandwichIng = myAnimal + " con " + myPlant;
   
@@ -141,6 +144,7 @@ function generateSandwich(){
   searchHistory.unshift(sandwichIng);
 
   savingHistory();
+
     localStorage.setItem("myAnimal", myAnimal);
 }
 
