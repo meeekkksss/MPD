@@ -14,6 +14,9 @@ var taxonPlants = 6;
 var animalAPI =
   "https://api.gbif.org/v1/species/search?rank=SPECIES&highertaxon_key=359&limit=100&offset=0";
 
+const searchHistory = [""];
+var historyNumber = 6;
+
 var outputBox = document.getElementById("output-box");
 
 var myPlant = "";
@@ -66,8 +69,18 @@ function generateIngredients() {
   getPlant(taxonPlants, randNum(plantsOffset), randNum(dataRange));
 }
 
+// upon generation of webpage, the user will be presented with
+//a box containing their last six generated sandwiches
+function populateHistory() {
+  for (var i = 0; i < searchHistory.length; i++) {
+    var currentEl = document.getElementById(`history-${i}`);
+    currentEl.textContent = searchHistory[i];
+  }
+}
+
 //pre generate the next sandwich
 function init() {
+  populateHistory();
   generateIngredients();
 }
 
@@ -85,6 +98,14 @@ function generateSandwich() {
   outputBox.textContent = sandwichMsg;
   init();
   setTimeout(testFunc, 10000);
+  localStorage.setItem("myPlant", myPlant);
+  localStorage.setItem("myAnimal", myAnimal);
+
+  //appending previous sandwich ingredients to array
+  var sandwichIng = myAnimal + " con " + myPlant;
+  if (searchHistory.length < historyNumber) {
+    searchHistory.unshift(sandwichIng);
+  }
 }
 
 submitBtn.addEventListener("click", generateSandwich);
@@ -92,8 +113,3 @@ submitBtn.addEventListener("click", generateSandwich);
 function testFunc() {
   console.log(`Testing`);
 }
-
-submitBtn.addEventListener("click", function () {
-  localStorage.setItem("myPlant", myPlant);
-  localStorage.setItem("myAnimal", myAnimal);
-});
