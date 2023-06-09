@@ -1,28 +1,26 @@
-var animalAPI =
-  "https://api.gbif.org/v1/species/search?rank=SPECIES&highertaxon_key=359&limit=100&offset=0"; //the end offsets the data
-var keyAnimals = "epzENF8Vuzg2XiYxDER5/g==LHqnoNfdprsV6lsX";
-var plantsAPI = "https://perenual.com/api/species-list?page=1&key=";
-var keyPlants = "sk-kDQd647e4a0a7cc661162";
-var plantsPageRange = 377; //last page of the plants API that we are using
-var gbifAPILimit = 100;
+//API related variables
+var animalAPI = "https://api.gbif.org/v1/species/search?rank=SPECIES&highertaxon_key=359&limit=100&offset=0"; //the end offsets the data
 var plantsEntryRange = 30;
 var animalsOffset = 5000;
 var plantsOffset = 5000;
 var dataRange = 100;
 var taxonMammals = 359;
 var taxonPlants = 6;
-var animalAPI =
-  "https://api.gbif.org/v1/species/search?rank=SPECIES&highertaxon_key=359&limit=100&offset=0";
-
-var outputBox = document.getElementById("output-box");
-
+var animalAPI = "https://api.gbif.org/v1/species/search?rank=SPECIES&highertaxon_key=359&limit=100&offset=0";
 var myPlant = "";
 var myAnimal = "";
 // animal audio
 let myAudio = document.querySelector("#audio");
 myAudio.play();
 
-plantsAPI = "https://perenual.com/api/species-list?page=1&key=" + keyPlants;
+//element related variables
+var outputBox = document.getElementById("output-box");
+var submitBtn = document.getElementById('submit-btn');
+var submitCont = document.getElementById('submit-container');
+var submitSection = document.getElementById('submit-section');
+var hiddenTimer = 10000; // how long the button element is hidden for (in ms)
+var loadingPlaceholder = document.createElement("p")
+loadingPlaceholder.textContent = "Loading... Please Wait...";
 
 // gets a random animal for the user
 function getAnimal(taxon, randOffset, randIndex) {
@@ -72,8 +70,11 @@ function generateIngredients() {
 //pre generate the next sandwich
 function init() {
   generateIngredients();
+  submitSection.appendChild(loadingPlaceholder);
+  setTimeout(unhideButton, hiddenTimer);
 }
 
+//function to run on startup
 init();
 
 var submitBtn = document.getElementById("submit-btn");
@@ -86,34 +87,31 @@ submitBtn.addEventListener("click", function (){
 
 
 //generates the sandwich string to be placed onto the page
-function generateSandwich() {
-  //need to pull 1 random animal and 1 random plant from each database
-  //this code will replicate that process but will likely be placed elsewhere
-  submitBtn.setAttribute;
-  var sandwichMsg = `Bon appettit! We call this one ${myAnimal} con ${myPlant} sandwich!\nEnjoy your scrumptuous sandwich!`;
-  outputBox.textContent = sandwichMsg;
-  init();
-  setTimeout(testFunc, 10000);
+function generateSandwich(){   
+    //need to pull 1 random animal and 1 random plant from each database
+    //this code will replicate that process but will likely be placed elsewhere
+    var sandwichMsg = `Bon appettit! We call this one ${myAnimal} con ${myPlant} sandwich!\nEnjoy your scrumptuous sandwich!`;
+    outputBox.textContent = sandwichMsg;
 
+    //pregen next sandwich
+    generateIngredients();
+
+    //hide button for a certain delayed amount of time
+    submitCont.setAttribute('class', 'is-hidden');  
+    loadingPlaceholder.classList.remove('is-hidden');
+    setTimeout(unhideButton, hiddenTimer); //delays the time button is revealed again
+
+    //store sandwich onto local storage
+    localStorage.setItem("myPlant", myPlant);
+    localStorage.setItem("myAnimal", myAnimal);
 }
 
-submitBtn.addEventListener('click', generateSandwich);
-
-function testFunc() {
+//unhides the button, meant to be called as a parameter to setTimeout()
+function unhideButton(){
   console.log(`Testing`);
-}
-
-
+  loadingPlaceholder.setAttribute('class', 'is-hidden');
+  submitCont.classList.remove('is-hidden');
+  submitCont.setAttribute('class', 'is-centered');  
 }
 
 submitBtn.addEventListener("click", generateSandwich);
-
-function testFunc() {
-  console.log(`Testing`);
-}
-
-
-submitBtn.addEventListener("click", function () {
-  localStorage.setItem("myPlant", myPlant);
-  localStorage.setItem("myAnimal", myAnimal);
-});
