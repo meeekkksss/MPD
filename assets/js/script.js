@@ -78,7 +78,7 @@ init();
 
 var submitBtn = document.getElementById("submit-btn");
 var resubmitBtn = document.getElementById("resubmit-btn");
-// animal audio event listener 
+// animal audio will play when user clicks on button 
 submitBtn.addEventListener("click", function (){
   audio.play();
 })
