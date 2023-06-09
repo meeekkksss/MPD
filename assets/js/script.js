@@ -9,6 +9,9 @@ var taxonPlants = 6;
 var animalAPI = "https://api.gbif.org/v1/species/search?rank=SPECIES&highertaxon_key=359&limit=100&offset=0";
 var myPlant = "";
 var myAnimal = "";
+// animal audio
+let myAudio = document.querySelector("#audio");
+myAudio.play();
 
 //element related variables
 var outputBox = document.getElementById("output-box");
@@ -73,6 +76,15 @@ function init() {
 
 //function to run on startup
 init();
+
+var submitBtn = document.getElementById("submit-btn");
+var resubmitBtn = document.getElementById("resubmit-btn");
+
+// animal audio will play when user clicks on button 
+submitBtn.addEventListener("click", function (){
+  audio.play();
+})
+
 
 //generates the sandwich string to be placed onto the page
 function generateSandwich(){   

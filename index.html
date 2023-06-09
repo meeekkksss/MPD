@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,7 +14,7 @@
 
 <body>
     <section class="hero">
-        <!-- navbar  -->
+        <!-- navbar 
         <nav class="navbar">
             <div class="navbar-brand">
                 <h1>Sandwich Generator</h1>
@@ -23,10 +24,21 @@
                 <a>Animals!</a>
                 <a>Plants!</a>
             </div>
-        </nav>
+        </nav> -->
 
 
         <p class="title is-size-1-touch has-text-centered ">Generate a Sandwich</p>
+
+        <div class="columns">
+            <div class="column is-half is-offset-one-quarter">
+                <div class="box" id="output-box">
+                    <input class="input" type="text" placeholder="ARE YOU READY TO BE SURPRISED?" readonly>
+
+                    </input>
+
+                </div>
+            </div>
+        </div>
 
         <div class="hero-b">
             <div class="control">
@@ -43,6 +55,19 @@
                 </div>
             </div>
         </div>
+
+        
+        <!-- Buttons -->
+        <div class="buttons has-addons is-centered">
+            <a id="submit-btn" class="button is-danger is-light is-medium is-outlined is-responsive is-rounded has-text-weight-bold is-size-3-touch is-flex-grow-1">
+                Create My Sandwich!
+                <!-- animal sound -->
+                <audio id="audio"  src="./assets/animals.mp3/Leopard.mp3"></audio>
+            </a>
+            
+            <!-- resubmit button  -->
+            <!-- <a id="resubmit-btn" class="button is-danger is-light is-medium is-outlined is-responsive is-rounded has-text-weight-bold is-size-3-touch is-flex-grow-1 is-hidden">Create My Sandwich!</a> -->
+
 
         <!-- Button -->
         <section id = "submit-section" class = "is-centered">
