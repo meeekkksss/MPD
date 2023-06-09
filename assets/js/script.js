@@ -107,7 +107,6 @@ function init() {
 init();
 
 
-
 //generates the sandwich string to be placed onto the page
 function generateSandwich(){  
 
