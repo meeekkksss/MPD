@@ -29,24 +29,3 @@ body{
   background-size: cover;
   padding-top: 4rem;
 }
-
-
-.hero  .title{
-  color: var(--wh);
-}
-
-section p.title{
-  color: white;
-}
-
-.navbar {
-  position:fixed;
-  width: 100%;
-  z-index: 999;
-}
-
-.hero {
-  margin-top: 4rem;
-  padding-top: 3rem;
-
-}
