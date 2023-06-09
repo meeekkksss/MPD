@@ -19,6 +19,9 @@ var outputBox = document.getElementById("output-box");
 var myPlant = "";
 var myAnimal = "";
 
+let myAudio = document.querySelector("#audio");
+myAudio.play();
+
 plantsAPI = "https://perenual.com/api/species-list?page=1&key=" + keyPlants;
 
 // gets a random animal for the user
@@ -75,6 +78,10 @@ init();
 
 var submitBtn = document.getElementById("submit-btn");
 var resubmitBtn = document.getElementById("resubmit-btn");
+// animal sound
+submitBtn.addEventListener("click", function (){
+  audio.play();
+})
 
 //generates the sandwich string to be placed onto the page
 function generateSandwich() {
