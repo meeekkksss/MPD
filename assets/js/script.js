@@ -115,6 +115,14 @@ function init() {
 //function to run on startup
 init();
 
+var submitBtn = document.getElementById("submit-btn");
+var resubmitBtn = document.getElementById("resubmit-btn");
+
+// animal audio will play when user clicks on button 
+submitBtn.addEventListener("click", function (){
+  audio.play();
+})
+
 //generates the sandwich string to be placed onto the page
 function generateSandwich(){   
   var sandwichMsg = `Bon appettit! We call this one "${myAnimal} con ${myPlant}" sandwich!\nEnjoy your scrumptuous sandwich!\nThis particular sandwich is quite popular in ${myCountry}`;
