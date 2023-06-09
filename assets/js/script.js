@@ -18,6 +18,9 @@ var outputBox = document.getElementById("output-box");
 
 var myPlant = "";
 var myAnimal = "";
+// animal audio
+let myAudio = document.querySelector("#audio");
+myAudio.play();
 
 plantsAPI = "https://perenual.com/api/species-list?page=1&key=" + keyPlants;
 
@@ -76,6 +79,12 @@ init();
 var submitBtn = document.getElementById("submit-btn");
 var resubmitBtn = document.getElementById("resubmit-btn");
 
+// animal audio will play when user clicks on button 
+submitBtn.addEventListener("click", function (){
+  audio.play();
+})
+
+
 //generates the sandwich string to be placed onto the page
 function generateSandwich() {
   //need to pull 1 random animal and 1 random plant from each database
@@ -85,6 +94,16 @@ function generateSandwich() {
   outputBox.textContent = sandwichMsg;
   init();
   setTimeout(testFunc, 10000);
+
+}
+
+submitBtn.addEventListener('click', generateSandwich);
+
+function testFunc() {
+  console.log(`Testing`);
+}
+
+
 }
 
 submitBtn.addEventListener("click", generateSandwich);
@@ -92,6 +111,7 @@ submitBtn.addEventListener("click", generateSandwich);
 function testFunc() {
   console.log(`Testing`);
 }
+
 
 submitBtn.addEventListener("click", function () {
   localStorage.setItem("myPlant", myPlant);
