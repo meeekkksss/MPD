@@ -18,7 +18,7 @@ var outputBox = document.getElementById("output-box");
 
 var myPlant = "";
 var myAnimal = "";
-
+// animal audio
 let myAudio = document.querySelector("#audio");
 myAudio.play();
 
@@ -78,7 +78,7 @@ init();
 
 var submitBtn = document.getElementById("submit-btn");
 var resubmitBtn = document.getElementById("resubmit-btn");
-// animal sound
+// animal audio event listener 
 submitBtn.addEventListener("click", function (){
   audio.play();
 })
