@@ -17,7 +17,7 @@ var myPlant = "";
 var myAnimal = "";
 // animal audio
 let myAudio = document.querySelector("#audio");
-myAudio.play();
+
 
 //element related variables
 var outputBox = document.getElementById("output-box");
@@ -26,7 +26,8 @@ var submitCont = document.getElementById('submit-container');
 var submitSection = document.getElementById('submit-section');
 var hiddenTimer = 10000; // how long the button element is hidden for (in ms)
 var loadingPlaceholder = document.createElement("p")
-loadingPlaceholder.textContent = "Loading... Please Wait...";
+loadingPlaceholder.textContent =
+  "Loading... Please Wait...";
 
 // gets a random animal for the user
 function getAnimal(taxon, randOffset, randIndex) {
@@ -113,7 +114,8 @@ submitBtn.addEventListener("click", function (){
 })
 
 //generates the sandwich string to be placed onto the page
-function generateSandwich(){   
+function generateSandwich(){  
+  myAudio.play(); 
     //need to pull 1 random animal and 1 random plant from each database
     //this code will replicate that process but will likely be placed elsewhere
     var sandwichMsg = `Bon appettit! We call this one ${myAnimal} con ${myPlant} sandwich!\nEnjoy your scrumptuous sandwich!`;
