@@ -10,6 +10,8 @@ var taxonPlants = 6;
 //data related variables
 //data related variables
 var searchHistory = [];
+//data related variables
+var searchHistory = [];
 var historyNumber = 6;
 var myPlant = "";
 var myAnimal = "";
