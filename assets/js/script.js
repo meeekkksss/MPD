@@ -7,15 +7,12 @@ var dataRange = 100;
 var taxonMammals = 359;
 var taxonPlants = 6;
 
-var animalAPI =
-  "https://api.gbif.org/v1/species/search?rank=SPECIES&highertaxon_key=359&limit=100&offset=0";
-
+//data related variables
 var searchHistory = [];
 var historyNumber = 6;
-
 var myPlant = "";
 var myAnimal = "";
-
+var myCountry = "";
 
 //element related variables
 var outputBox = document.getElementById("output-box");
@@ -57,23 +54,33 @@ function getPlant(taxon, randOffset, randIndex) {
     });
 }
 
+//fetches an array of countries and chooses a random index for a random country
+function getCountry(){
+  var index = 0;
+  fetch("https://restcountries.com/v3.1/all")
+    .then(function (response){
+      return response.json();
+    })
+    .then(function(data){
+      index = randNum(data.length);
+      console.log(data[index].name.common);
+      myCountry = data[index].name.common;
+    });
+}
+
 //gives a random number between 0 and num, not including num
 function randNum(num) {
   return Math.floor(Math.random() * num);
 }
 
-//this function will run when the page is opened
-//this function will also run after the click event is resolved
-//this function pre-generates the sandwich before the user click
+//runs both getAnimal and getPlant functions
 function generateIngredients() {
-  // setTimeout(getAnimal(208), 3000); | this is testing out the timeout function
-  // getAnimal(208); | this is a dead link
   getAnimal(taxonMammals, randNum(animalsOffset), randNum(dataRange));
   getPlant(taxonPlants, randNum(plantsOffset), randNum(dataRange));
 }
 
 // upon generation of webpage, the user will be presented with
-//a box containing their last six generated sandwiches
+// a box containing their last six generated sandwiches
 function populateHistory() {
   for (var i = 0; i < searchHistory.length; i++) {
     var currentEl = document.getElementById(`sandwich-${i}`);
@@ -81,64 +88,61 @@ function populateHistory() {
   }
 }
 
+// saves user's sandwiches to local data
 function savingHistory() {
   var saveData = JSON.stringify(searchHistory);
   localStorage.setItem("mySandwiches", saveData);
 }
 
+// if the user has local data, assigns that data to the searchHistory array
 function loadHistory() {
   var loadData = JSON.parse(localStorage.getItem("mySandwiches"));
+  searchHistory = loadData;
   console.log(loadData);
-  populateHistory();
 }
 
 //pre generate the next sandwich
 function init() {
+  loadHistory();
   populateHistory();
   generateIngredients();
+  getCountry();
   submitSection.appendChild(loadingPlaceholder);
   setTimeout(unhideButton, hiddenTimer);
-
-  loadHistory();
-
 }
 
 //function to run on startup
 init();
 
-
-
 //generates the sandwich string to be placed onto the page
-function generateSandwich(){  
+function generateSandwich(){   
+  var sandwichMsg = `Bon appettit! We call this one "${myAnimal} con ${myPlant}" sandwich!\nEnjoy your scrumptuous sandwich!\nThis particular sandwich is quite popular in ${myCountry}`;
+  outputBox.textContent = sandwichMsg;
 
-    //need to pull 1 random animal and 1 random plant from each database
-    //this code will replicate that process but will likely be placed elsewhere
-    var sandwichMsg = `Bon appettit! We call this one ${myAnimal} con ${myPlant} sandwich!\nEnjoy your scrumptuous sandwich!`;
-    outputBox.textContent = sandwichMsg;
 
-    //pregen next sandwich
-    generateIngredients();
+  //pregen next sandwich
+  generateIngredients();
 
-    //hide button for a certain delayed amount of time
-    submitCont.setAttribute('class', 'is-hidden');  
-    loadingPlaceholder.classList.remove('is-hidden');
-    setTimeout(unhideButton, hiddenTimer); //delays the time button is revealed again
+  //pregen next country
+  getCountry();
 
-    //store sandwich onto local storage
-    localStorage.setItem("myPlant", myPlant);
-
+  //hide button for a certain delayed amount of time
+  submitCont.setAttribute('class', 'is-hidden');  
+  loadingPlaceholder.classList.remove('is-hidden');
+  setTimeout(unhideButton, hiddenTimer); //delays the time button is revealed again
 
   //appending previous sandwich ingredients to array
-  var sandwichIng = myAnimal + " con " + myPlant;
+  var sandwichIng = `${myAnimal} con ${myPlant}`;
   
+  //makes certain that our history array is not larger than our historyNumber
   while (searchHistory.length >= historyNumber) {
     searchHistory.pop();
   }
   searchHistory.unshift(sandwichIng);
 
+  //populate UI then save to localStorage
+  populateHistory();
   savingHistory();
-
-    localStorage.setItem("myAnimal", myAnimal);
 }
 
 //unhides the button, meant to be called as a parameter to setTimeout()
@@ -149,4 +153,7 @@ function unhideButton(){
   submitCont.setAttribute('class', 'is-centered');  
 }
 
+//the star of the show
 submitBtn.addEventListener("click", generateSandwich);
+
+
