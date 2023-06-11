@@ -21,7 +21,8 @@ var submitCont = document.getElementById('submit-container');
 var submitSection = document.getElementById('submit-section');
 var hiddenTimer = 10000; // how long the button element is hidden for (in ms)
 var loadingPlaceholder = document.createElement("p")
-loadingPlaceholder.textContent = "Loading... Please Wait...";
+loadingPlaceholder.textContent =
+  "Loading... Please Wait...";
 
 // gets a random animal for the user
 function getAnimal(taxon, randOffset, randIndex) {
