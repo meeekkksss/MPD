@@ -90,8 +90,7 @@ function savingHistory() {
 
 function loadHistory() {
   var loadData = JSON.parse(localStorage.getItem("mySandwiches"));
-  console.log(loadData);
-  populateHistory();
+  searchHistory = loadData;
 }
 
 //pre generate the next sandwich
