@@ -6,19 +6,16 @@ var plantsOffset = 5000;
 var dataRange = 100;
 var taxonMammals = 359;
 var taxonPlants = 6;
+
 var animalAPI =
   "https://api.gbif.org/v1/species/search?rank=SPECIES&highertaxon_key=359&limit=100&offset=0";
 
-const searchHistory = [];
+var searchHistory = [];
 var historyNumber = 6;
-
-var outputBox = document.getElementById("output-box");
 
 var myPlant = "";
 var myAnimal = "";
-// animal audio
-let myAudio = document.querySelector("#audio");
-myAudio.play();
+
 
 //element related variables
 var outputBox = document.getElementById("output-box");
@@ -27,7 +24,8 @@ var submitCont = document.getElementById('submit-container');
 var submitSection = document.getElementById('submit-section');
 var hiddenTimer = 10000; // how long the button element is hidden for (in ms)
 var loadingPlaceholder = document.createElement("p")
-loadingPlaceholder.textContent = "Loading... Please Wait...";
+loadingPlaceholder.textContent =
+  "Loading... Please Wait...";
 
 // gets a random animal for the user
 function getAnimal(taxon, randOffset, randIndex) {
@@ -99,23 +97,19 @@ function init() {
   generateIngredients();
   submitSection.appendChild(loadingPlaceholder);
   setTimeout(unhideButton, hiddenTimer);
+
   loadHistory();
+
 }
 
 //function to run on startup
 init();
 
-var submitBtn = document.getElementById("submit-btn");
-var resubmitBtn = document.getElementById("resubmit-btn");
-
-// animal audio will play when user clicks on button 
-submitBtn.addEventListener("click", function (){
-  audio.play();
-})
 
 
 //generates the sandwich string to be placed onto the page
-function generateSandwich(){   
+function generateSandwich(){  
+
     //need to pull 1 random animal and 1 random plant from each database
     //this code will replicate that process but will likely be placed elsewhere
     var sandwichMsg = `Bon appettit! We call this one ${myAnimal} con ${myPlant} sandwich!\nEnjoy your scrumptuous sandwich!`;
@@ -132,6 +126,7 @@ function generateSandwich(){
     //store sandwich onto local storage
     localStorage.setItem("myPlant", myPlant);
 
+
   //appending previous sandwich ingredients to array
   var sandwichIng = myAnimal + " con " + myPlant;
   
@@ -141,6 +136,7 @@ function generateSandwich(){
   searchHistory.unshift(sandwichIng);
 
   savingHistory();
+
     localStorage.setItem("myAnimal", myAnimal);
 }
 
