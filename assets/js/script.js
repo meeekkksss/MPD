@@ -9,8 +9,6 @@ var taxonPlants = 6;
 
 //data related variables
 var searchHistory = [];
-//data related variables
-var searchHistory = [];
 var historyNumber = 6;
 var myPlant = "";
 var myAnimal = "";
@@ -100,6 +98,7 @@ function savingHistory() {
 function loadHistory() {
   var loadData = JSON.parse(localStorage.getItem("mySandwiches"));
   searchHistory = loadData;
+  console.log(loadData);
 }
 
 //pre generate the next sandwich
@@ -114,14 +113,6 @@ function init() {
 
 //function to run on startup
 init();
-
-var submitBtn = document.getElementById("submit-btn");
-var resubmitBtn = document.getElementById("resubmit-btn");
-
-// animal audio will play when user clicks on button 
-submitBtn.addEventListener("click", function (){
-  audio.play();
-})
 
 //generates the sandwich string to be placed onto the page
 function generateSandwich(){   
