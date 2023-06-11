@@ -15,8 +15,6 @@ var historyNumber = 6;
 
 var myPlant = "";
 var myAnimal = "";
-// animal audio
-let myAudio = document.querySelector("#audio");
 
 
 //element related variables
@@ -108,14 +106,11 @@ function init() {
 //function to run on startup
 init();
 
-// animal audio will play when user clicks on button 
-submitBtn.addEventListener("click", function (){
-  audio.play();
-})
+
 
 //generates the sandwich string to be placed onto the page
 function generateSandwich(){  
-  myAudio.play(); 
+
     //need to pull 1 random animal and 1 random plant from each database
     //this code will replicate that process but will likely be placed elsewhere
     var sandwichMsg = `Bon appettit! We call this one ${myAnimal} con ${myPlant} sandwich!\nEnjoy your scrumptuous sandwich!`;
