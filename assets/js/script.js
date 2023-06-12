@@ -157,7 +157,7 @@ function generateSandwich() {
   outputBox.innerHTML = ""; // Clear the output box
   outputBox.appendChild(loadingPlaceholder);
 
-  // Hide loading image and show generated sandwich
+  // Hide loading image and show generated sammie
   loadingPlaceholder.classList.remove("is-hidden");
   outputBox.removeChild(loadingPlaceholder);
   outputBox.textContent = sandwichMsg;
