@@ -27,6 +27,19 @@ var loadingPlaceholder = document.createElement("p")
 loadingPlaceholder.textContent =
   "Loading... Please Wait...";
 
+// function to show the loading place holder
+// shows the placeholder 
+function showLoadingPlaceholder() {
+  outputBox.textContent = "";
+  outputBox.appendChild(loadingPlaceholder);
+}
+
+// function to hide the loadingPlaceholder 
+// hides the loading placeholder 
+function hideLoadingPlaceholder() {
+  outputBox.removeChild(loadingPlaceholder);
+}
+
 // gets a random animal for the user
 function getAnimal(taxon, randOffset, randIndex) {
   fetch(
@@ -112,6 +125,10 @@ function init() {
   getCountry();
   submitSection.appendChild(loadingPlaceholder);
   setTimeout(unhideButton, hiddenTimer);
+
+  // sets the HTML content of the loading place holder 
+loadingPlaceholder.innerHTML =
+  '<div style="display: flex; justify-content: center; align-items: center;"><img src="https://img.icons8.com/ios/50/000000/hamburger.png" alt="Loading..." /></div>';
 }
 
 //function to run on startup
@@ -146,6 +163,9 @@ function generateSandwich(){
   //populate UI then save to localStorage
   populateHistory();
   savingHistory();
+
+  // shows the loading placeholder 
+  showLoadingPlaceholder();
 }
 
 //unhides the button, meant to be called as a parameter to setTimeout()
