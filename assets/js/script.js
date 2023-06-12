@@ -1,6 +1,7 @@
 //API related variables
 var animalAPI =
   "https://api.gbif.org/v1/species/search?rank=SPECIES&highertaxon_key=359&limit=100&offset=0"; //the end offsets the data
+var countriesAPI = "https://restcountries.com/v3.1/all";
 var plantsEntryRange = 30;
 var animalsOffset = 5000;
 var plantsOffset = 5000;
@@ -77,7 +78,7 @@ function getPlant(taxon, randOffset, randIndex) {
 //fetches an array of countries and chooses a random index for a random country
 function getCountry() {
   var index = 0;
-  fetch("https://restcountries.com/v3.1/all")
+  fetch(countriesAPI)
     .then(function (response) {
       return response.json();
     })
@@ -102,10 +103,12 @@ function generateIngredients() {
 // upon generation of webpage, the user will be presented with
 // a box containing their last six generated sandwiches
 function populateHistory() {
-  for (var i = 0; i < searchHistory.length; i++) {
-    var currentEl = document.getElementById(`sandwich-${i}`);
-    currentEl.textContent = searchHistory[i];
-  }
+  if(searchHistory != null){
+    for (var i = 0; i < searchHistory.length; i++) {
+      var currentEl = document.getElementById(`sandwich-${i}`);
+      currentEl.textContent = searchHistory[i];
+    } 
+  } else { return; }
 }
 
 // saves user's sandwiches to local data
