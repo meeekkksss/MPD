@@ -16,6 +16,20 @@ var myAnimal = "";
 var myCountry = "";
 
 //element related variables
+ var favoriteSandwichBox = document.getElementById("favorite-sandwich-box");
+ var favoriteSandwichText = document.getElementById("favorite-sandwich-text");
+ var sandwichHistorySelect = document.getElementById("sandwich-history-select");
+
+ // Populates the favorite sandwich box with the selected sandwich
+        function displayFavoriteSandwich() {
+            var selectedIndex = sandwichHistorySelect.selectedIndex - 1; // Subtract 1 to account for the "Sandwich History" option
+            if (selectedIndex >= 0 && selectedIndex < searchHistory.length) {
+                favoriteSandwichText.textContent = searchHistory[selectedIndex];
+            } else {
+                favoriteSandwichText.textContent = "Favorite Sandwich?";
+            }
+        }
+
 var outputBox = document.getElementById("output-box");
 var submitBtn = document.getElementById("submit-btn");
 var submitCont = document.getElementById("submit-container");
@@ -114,6 +128,17 @@ function init() {
   setTimeout(unhideButton, hiddenTimer);
 }
 
+// Populates the sandwich history dropdown
+        function populateSandwichHistory() {
+            sandwichHistorySelect.innerHTML = "<option>Sandwich History</option>";
+            for (var i = 0; i < searchHistory.length; i++) {
+                var option = document.createElement("option");
+                option.textContent = searchHistory[i];
+                sandwichHistorySelect.appendChild(option);
+            }
+        }
+
+
 //function to run on startup
 init();
 
@@ -122,6 +147,7 @@ function generateSandwich() {
   var sandwichMsg = `Bon appettit! We call this one "${myAnimal} con ${myPlant}" sandwich!\nEnjoy your scrumptuous sandwich!\nThis particular sandwich is quite popular in ${myCountry}`;
   outputBox.textContent = sandwichMsg;
 
+  // 
   //pregen next sandwich
   generateIngredients();
 
