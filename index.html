@@ -14,7 +14,19 @@
 
 <body>
     <section class="hero">
-    
+        <!-- navbar 
+        <nav class="navbar">
+            <div class="navbar-brand">
+                <h1>Sandwich Generator</h1>
+            </div>
+            <div class="navbar-end">
+                <a>Github</a>
+                <a>Animals!</a>
+                <a>Plants!</a>
+            </div>
+        </nav> -->
+
+
         <p class="title is-size-1-touch has-text-centered is-mobile">Generate a Sandwich</p>
 
         <div class="columns">
@@ -27,6 +39,7 @@
                 </div>
             </div>
         </div>
+
         <!-- Button -->
         <!-- <section id="submit-section" class="is-mobile is-centered">
             <div id="submit-container" class="buttons has-addons is-centered is-hidden">
@@ -49,34 +62,47 @@
                         <option id="sandwich-3"> </option>
                         <option id="sandwich-4"> </option>
                         <option id="sandwich-5"> </option>
-                        <option>Sandwich History</option>
-                        <option id="sandwich-0"> </option>
-                        <option id="sandwich-1"> </option>
-                        <option id="sandwich-2"> </option>
-                        <option id="sandwich-3"> </option>
-                        <option id="sandwich-4"> </option>
-                        <option id="sandwich-5"> </option>
                     </select>
                 </div>
             </div>
-        </div>
+        </div> -->
 
-        <!-- Button -->
-        <section id="submit-section" class="is-centered is-mobile">
-            <div id="submit-container" class="buttons has-addons is-centered is-hidden">
-                <a id="submit-btn"
-                    class="button is-danger is-light is-medium is-outlined is-responsive is-rounded has-text-weight-bold is-mobile">
-                    Create My Sandwich!
-                </a>
-            </div>
-        </section>
 
-        <!-- Button -->
-        <section id = "submit-section" class = "is-centered">
-            <div id = "submit-container" class="buttons has-addons is-centered is-hidden">
-                <a id="submit-btn"
-                    class="button is-danger is-light is-medium is-outlined is-responsive is-rounded has-text-weight-bold">Create
-                    My Sandwich!</a>
+        <div class="tile is-ancestor">
+            <div class="field has-addons">
+
+                <!-- Button -->
+                <div class="tile is-parent">
+                    <div class="tile is-child">
+                        <section id="submit-section" class="control is-mobile">
+                            <div id="submit-container"
+                                class="buttons has-addons is-centered is-hidden is-grouped-right">
+                                <a id="submit-btn"
+                                    class="button is-danger is-light is-medium is-outlined is-responsive is-rounded has-text-weight-bold is-mobile">
+                                    Create My Sandwich!</a>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Sandwich History Dropdown -->
+                <div class="tile is-parent">
+                    <div class="tile is-child is-4">
+                        <div class="control is-mobile">
+                            <div class="select">
+                                <select>
+                                    <option>Sandwich History</option>
+                                    <option id="sandwich-0"> </option>
+                                    <option id="sandwich-1"> </option>
+                                    <option id="sandwich-2"> </option>
+                                    <option id="sandwich-3"> </option>
+                                    <option id="sandwich-4"> </option>
+                                    <option id="sandwich-5"> </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -87,14 +113,13 @@
         <!-- output box -->
         <div class="columns">
             <div class="column is-one-fourth is-offset-10">
-                <div class="box is-mobile id="output-box">
+                <div class="box is-mobile id=" output-box">
                     <div class="input" type="text" placeholder="Favorite Sandwich?">
                         Favorite Sandwich?
                     </div>
                 </div>
             </div>
         </div>
-
 
         <!-- temp output -->
         <div class="dropdown-is-hoverable is-size-3-touch has-text-white">Results</div>
