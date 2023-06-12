@@ -183,3 +183,4 @@ function unhideButton() {
 
 //the star of the show
 submitBtn.addEventListener("click", generateSandwich);
+
