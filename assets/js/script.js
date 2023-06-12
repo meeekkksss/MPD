@@ -15,7 +15,7 @@ var myPlant = "";
 var myAnimal = "";
 var myCountry = "";
 
-//element related variables
+//element related variables for fav samm
  var favoriteSandwichBox = document.getElementById("favorite-sandwich-box");
  var favoriteSandwichText = document.getElementById("favorite-sandwich-text");
  var sandwichHistorySelect = document.getElementById("sandwich-history-select");
@@ -29,7 +29,7 @@ var myCountry = "";
                 favoriteSandwichText.textContent = "Favorite Sandwich?";
             }
         }
-
+//element related variables
 var outputBox = document.getElementById("output-box");
 var submitBtn = document.getElementById("submit-btn");
 var submitCont = document.getElementById("submit-container");
@@ -170,6 +170,7 @@ function generateSandwich() {
 
   //populate UI then save to localStorage
   populateHistory();
+  populateSandwichHistory();
   savingHistory();
 }
 
