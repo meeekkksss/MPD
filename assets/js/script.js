@@ -17,19 +17,19 @@ var myCountry = "";
 
 
 //element related variables for fav samm
- var favoriteSandwichBox = document.getElementById("favorite-sandwich-box");
- var favoriteSandwichText = document.getElementById("favorite-sandwich-text");
- var sandwichHistorySelect = document.getElementById("sandwich-history-select");
+//  var favoriteSandwichBox = document.getElementById("favorite-sandwich-box");
+//  var favoriteSandwichText = document.getElementById("favorite-sandwich-text");
+//  var sandwichHistorySelect = document.getElementById("sandwich-history-select");
 
- // Populates the favorite sandwich box with the selected sandwich
-        function displayFavoriteSandwich() {
-            var selectedIndex = sandwichHistorySelect.selectedIndex - 1; // Subtract 1 to account for the "Sandwich History" option
-            if (selectedIndex >= 0 && selectedIndex < searchHistory.length) {
-                favoriteSandwichText.textContent = searchHistory[selectedIndex];
-            } else {
-                favoriteSandwichText.textContent = "Favorite Sandwich?";
-            }
-        }
+//  // Populates the favorite sandwich box with the selected sandwich
+//         function displayFavoriteSandwich() {
+//             var selectedIndex = sandwichHistorySelect.selectedIndex - 1; // Subtract 1 to account for the "Sandwich History" option
+//             if (selectedIndex >= 0 && selectedIndex < searchHistory.length) {
+//                 favoriteSandwichText.textContent = searchHistory[selectedIndex];
+//             } else {
+//                 favoriteSandwichText.textContent = "Favorite Sandwich?";
+//             }
+//         }
 
 //element related variables
 var outputBox = document.getElementById("output-box");
@@ -177,7 +177,7 @@ function generateSandwich() {
   //populate UI then save to localStorage
   populateHistory();
 // function to populate sandwich history
-  populateSandwichHistory();
+  // populateSandwichHistory();
   savingHistory();
 }
 
