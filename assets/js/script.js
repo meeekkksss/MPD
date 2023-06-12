@@ -8,9 +8,6 @@ var taxonMammals = 359;
 var taxonPlants = 6;
 
 //data related variables
-//data related variables
-var searchHistory = [];
-//data related variables
 var searchHistory = [];
 var historyNumber = 6;
 var myPlant = "";
@@ -26,19 +23,6 @@ var hiddenTimer = 10000; // how long the button element is hidden for (in ms)
 var loadingPlaceholder = document.createElement("p")
 loadingPlaceholder.textContent =
   "Loading... Please Wait...";
-
-// function to show the loading place holder
-// shows the placeholder 
-function showLoadingPlaceholder() {
-  outputBox.textContent = "";
-  outputBox.appendChild(loadingPlaceholder);
-}
-
-// function to hide the loadingPlaceholder 
-// hides the loading placeholder 
-function hideLoadingPlaceholder() {
-  outputBox.removeChild(loadingPlaceholder);
-}
 
 // gets a random animal for the user
 function getAnimal(taxon, randOffset, randIndex) {
@@ -71,13 +55,13 @@ function getPlant(taxon, randOffset, randIndex) {
 }
 
 //fetches an array of countries and chooses a random index for a random country
-function getCountry(){
+function getCountry() {
   var index = 0;
   fetch("https://restcountries.com/v3.1/all")
-    .then(function (response){
+    .then(function (response) {
       return response.json();
     })
-    .then(function(data){
+    .then(function (data) {
       index = randNum(data.length);
       console.log(data[index].name.common);
       myCountry = data[index].name.common;
@@ -125,20 +109,15 @@ function init() {
   getCountry();
   submitSection.appendChild(loadingPlaceholder);
   setTimeout(unhideButton, hiddenTimer);
-
-  // sets the HTML content of the loading place holder 
-loadingPlaceholder.innerHTML =
-  '<div style="display: flex; justify-content: center; align-items: center;"><img src="https://img.icons8.com/ios/50/000000/hamburger.png" alt="Loading..." /></div>';
 }
 
 //function to run on startup
 init();
 
 //generates the sandwich string to be placed onto the page
-function generateSandwich(){   
+function generateSandwich() {
   var sandwichMsg = `Bon appettit! We call this one "${myAnimal} con ${myPlant}" sandwich!\nEnjoy your scrumptuous sandwich!\nThis particular sandwich is quite popular in ${myCountry}`;
   outputBox.textContent = sandwichMsg;
-
 
   //pregen next sandwich
   generateIngredients();
@@ -147,13 +126,13 @@ function generateSandwich(){
   getCountry();
 
   //hide button for a certain delayed amount of time
-  submitCont.setAttribute('class', 'is-hidden');  
-  loadingPlaceholder.classList.remove('is-hidden');
+  submitCont.setAttribute("class", "is-hidden");
+  loadingPlaceholder.classList.remove("is-hidden");
   setTimeout(unhideButton, hiddenTimer); //delays the time button is revealed again
 
   //appending previous sandwich ingredients to array
   var sandwichIng = `${myAnimal} con ${myPlant}`;
-  
+
   //makes certain that our history array is not larger than our historyNumber
   while (searchHistory.length >= historyNumber) {
     searchHistory.pop();
@@ -163,9 +142,6 @@ function generateSandwich(){
   //populate UI then save to localStorage
   populateHistory();
   savingHistory();
-
-  // shows the loading placeholder 
-  showLoadingPlaceholder();
 }
 
 //unhides the button, meant to be called as a parameter to setTimeout()
@@ -178,5 +154,3 @@ function unhideButton(){
 
 //the star of the show
 submitBtn.addEventListener("click", generateSandwich);
-
-
