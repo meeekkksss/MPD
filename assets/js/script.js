@@ -19,7 +19,7 @@ var outputBox = document.getElementById("output-box");
 var submitBtn = document.getElementById('submit-btn');
 var submitCont = document.getElementById('submit-container');
 var submitSection = document.getElementById('submit-section');
-var hiddenTimer = 10000; // how long the button element is hidden for (in ms)
+var hiddenTimer = 10; // how long the button element is hidden for (in ms)
 var loadingPlaceholder = document.createElement("p")
 loadingPlaceholder.textContent =
   "Loading... Please Wait...";
