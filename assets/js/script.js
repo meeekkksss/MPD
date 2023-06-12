@@ -153,6 +153,14 @@ function generateSandwich() {
   var sandwichMsg = `Bon appettit! We call this one "${myAnimal} con ${myPlant}" sandwich!\nEnjoy your scrumptuous sandwich!\nThis particular sandwich is quite popular in ${myCountry}`;
   outputBox.textContent = sandwichMsg;
 
+  // Show loading image
+  outputBox.innerHTML = ""; // Clear the output box
+  outputBox.appendChild(loadingPlaceholder);
+
+  // Hide loading image and show generated sandwich
+  loadingPlaceholder.classList.remove("is-hidden");
+  outputBox.removeChild(loadingPlaceholder);
+  outputBox.textContent = sandwichMsg;
 
   //pregen next sandwich
   generateIngredients();
@@ -176,7 +184,7 @@ function generateSandwich() {
 
   //populate UI then save to localStorage
   populateHistory();
-// function to populate sandwich history
+  // function to populate sandwich history
   // populateSandwichHistory();
   savingHistory();
 }
