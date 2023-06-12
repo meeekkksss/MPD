@@ -1,5 +1,6 @@
 //API related variables
-var animalAPI = "https://api.gbif.org/v1/species/search?rank=SPECIES&highertaxon_key=359&limit=100&offset=0"; //the end offsets the data
+var animalAPI =
+  "https://api.gbif.org/v1/species/search?rank=SPECIES&highertaxon_key=359&limit=100&offset=0"; //the end offsets the data
 var plantsEntryRange = 30;
 var animalsOffset = 5000;
 var plantsOffset = 5000;
@@ -16,13 +17,12 @@ var myCountry = "";
 
 //element related variables
 var outputBox = document.getElementById("output-box");
-var submitBtn = document.getElementById('submit-btn');
-var submitCont = document.getElementById('submit-container');
-var submitSection = document.getElementById('submit-section');
+var submitBtn = document.getElementById("submit-btn");
+var submitCont = document.getElementById("submit-container");
+var submitSection = document.getElementById("submit-section");
 var hiddenTimer = 10000; // how long the button element is hidden for (in ms)
-var loadingPlaceholder = document.createElement("p")
-loadingPlaceholder.textContent =
-  "Loading... Please Wait...";
+var loadingPlaceholder = document.createElement("p");
+loadingPlaceholder.textContent = "Loading... Please Wait...";
 
 // gets a random animal for the user
 function getAnimal(taxon, randOffset, randIndex) {
@@ -55,13 +55,13 @@ function getPlant(taxon, randOffset, randIndex) {
 }
 
 //fetches an array of countries and chooses a random index for a random country
-function getCountry(){
+function getCountry() {
   var index = 0;
   fetch("https://restcountries.com/v3.1/all")
-    .then(function (response){
+    .then(function (response) {
       return response.json();
     })
-    .then(function(data){
+    .then(function (data) {
       index = randNum(data.length);
       console.log(data[index].name.common);
       myCountry = data[index].name.common;
@@ -115,10 +115,9 @@ function init() {
 init();
 
 //generates the sandwich string to be placed onto the page
-function generateSandwich(){   
+function generateSandwich() {
   var sandwichMsg = `Bon appettit! We call this one "${myAnimal} con ${myPlant}" sandwich!\nEnjoy your scrumptuous sandwich!\nThis particular sandwich is quite popular in ${myCountry}`;
   outputBox.textContent = sandwichMsg;
-
 
   //pregen next sandwich
   generateIngredients();
@@ -127,13 +126,13 @@ function generateSandwich(){
   getCountry();
 
   //hide button for a certain delayed amount of time
-  submitCont.setAttribute('class', 'is-hidden');  
-  loadingPlaceholder.classList.remove('is-hidden');
+  submitCont.setAttribute("class", "is-hidden");
+  loadingPlaceholder.classList.remove("is-hidden");
   setTimeout(unhideButton, hiddenTimer); //delays the time button is revealed again
 
   //appending previous sandwich ingredients to array
   var sandwichIng = `${myAnimal} con ${myPlant}`;
-  
+
   //makes certain that our history array is not larger than our historyNumber
   while (searchHistory.length >= historyNumber) {
     searchHistory.pop();
@@ -146,14 +145,12 @@ function generateSandwich(){
 }
 
 //unhides the button, meant to be called as a parameter to setTimeout()
-function unhideButton(){
+function unhideButton() {
   console.log(`Testing`);
-  loadingPlaceholder.setAttribute('class', 'is-hidden');
-  submitCont.classList.remove('is-hidden');
-  submitCont.setAttribute('class', 'is-centered');  
+  loadingPlaceholder.setAttribute("class", "is-hidden");
+  submitCont.classList.remove("is-hidden");
+  submitCont.setAttribute("class", "is-centered");
 }
 
 //the star of the show
 submitBtn.addEventListener("click", generateSandwich);
-
-
