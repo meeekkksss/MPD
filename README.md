@@ -1,14 +1,14 @@
 <h1 align="center">Hi 👋, We are Merika, Daniel, Paul</h1>
 <h3 align="center">Random Sandwich Generator (RSG) </h3>
 
+
 # Description 
 - 🔭 We are currently working on a [A Sandwich Generator](https://github.com/meeekkksss/MPD)
 - We wanted to create a simple program that intergrates API functionality and tests out the skills we have learned so far. 
 
 # Usage
-When users click onto the deployed page, they will be presented with [MPD](./assets/IMG/RSG%20MAIN%20PAGE.png)
-
-Users should be able to select the "Create a Sandwich" button and be displayed with a randomly generated sandwich.... [submitbtn](./assets/IMG/BUTTON%20IMG.png)
+- When users click onto the deployed page, they will be presented with [MPD](./assets/IMG/RSG%20MAIN%20PAGE.png)
+- Users should be able to select the "Create a Sandwich" button and be displayed with a randomly generated sandwich.... [submitbtn](./assets/IMG/BUTTON%20IMG.png)
 
 # Collaboration
 - 🤝 We are looking for help with [future features](coming to you soon)
@@ -52,6 +52,7 @@ https://restcountries.com/
 - CSS Framework:
 https://bulma.io/documentation/overview/start/
 
+
 Background - Background Picture: 
 https://unsplash.com/
 https://images.unsplash.com/photo-1499028344343-cd173ffc68a9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80
@@ -63,3 +64,4 @@ Credits
 
 # License 
 - Please refer to the LICENSE in the repo
+
