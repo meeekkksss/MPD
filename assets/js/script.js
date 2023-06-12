@@ -1,7 +1,6 @@
 //API related variables
 var animalAPI =
   "https://api.gbif.org/v1/species/search?rank=SPECIES&highertaxon_key=359&limit=100&offset=0"; //the end offsets the data
-var countriesAPI = "https://restcountries.com/v3.1/all";
 var plantsEntryRange = 30;
 var animalsOffset = 5000;
 var plantsOffset = 5000;
@@ -79,7 +78,7 @@ function getPlant(taxon, randOffset, randIndex) {
 //fetches an array of countries and chooses a random index for a random country
 function getCountry() {
   var index = 0;
-  fetch(countriesAPI)
+  fetch("https://restcountries.com/v3.1/all")
     .then(function (response) {
       return response.json();
     })
@@ -104,12 +103,10 @@ function generateIngredients() {
 // upon generation of webpage, the user will be presented with
 // a box containing their last six generated sandwiches
 function populateHistory() {
-  if(searchHistory != null){
-    for (var i = 0; i < searchHistory.length; i++) {
-      var currentEl = document.getElementById(`sandwich-${i}`);
-      currentEl.textContent = searchHistory[i];
-    } 
-  } else { return; }
+  for (var i = 0; i < searchHistory.length; i++) {
+    var currentEl = document.getElementById(`sandwich-${i}`);
+    currentEl.textContent = searchHistory[i];
+  }
 }
 
 // saves user's sandwiches to local data
@@ -156,14 +153,14 @@ function generateSandwich() {
   var sandwichMsg = `Bon appettit! We call this one "${myAnimal} con ${myPlant}" sandwich!\nEnjoy your scrumptuous sandwich!\nThis particular sandwich is quite popular in ${myCountry}`;
   outputBox.textContent = sandwichMsg;
 
-  // Show loading image
-  outputBox.innerHTML = ""; // Clear the output box
-  outputBox.appendChild(loadingPlaceholder);
+  // // Show loading image
+  // outputBox.innerHTML = ""; // Clear the output box
+  // outputBox.appendChild(loadingPlaceholder);
 
-  // Hide loading image and show generated sammie
-  loadingPlaceholder.classList.remove("is-hidden");
-  outputBox.removeChild(loadingPlaceholder);
-  outputBox.textContent = sandwichMsg;
+  // // Hide loading image and show generated sammie
+  // loadingPlaceholder.classList.remove("is-hidden");
+  // outputBox.removeChild(loadingPlaceholder);
+  // outputBox.textContent = sandwichMsg;
 
   //pregen next sandwich
   generateIngredients();
