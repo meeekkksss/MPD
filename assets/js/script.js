@@ -112,6 +112,15 @@ function populateHistory() {
   } else { return; }
 }
 
+//unhides the button, meant to be called as a parameter to setTimeout()
+function unhideButton() {
+  console.log(`Testing`);
+  loadingPlaceholder.setAttribute("class", "is-hidden");
+  
+  submitCont.classList.remove("is-hidden");
+  submitCont.setAttribute("class", "is-centered");
+}
+
 // saves user's sandwiches to local data
 function savingHistory() {
   var saveData = JSON.stringify(searchHistory);
@@ -121,7 +130,9 @@ function savingHistory() {
 // if the user has local data, assigns that data to the searchHistory array
 function loadHistory() {
   var loadData = JSON.parse(localStorage.getItem("mySandwiches"));
-  searchHistory = loadData;
+  if(loadData != null){
+    searchHistory = loadData;
+  }
   console.log(loadData);
 }
 
@@ -137,14 +148,14 @@ function init() {
 
 
 // Populates the sandwich history dropdown
-        function populateSandwichHistory() {
-            sandwichHistorySelect.innerHTML = "<option>Sandwich History</option>";
-            for (var i = 0; i < searchHistory.length; i++) {
-                var option = document.createElement("option");
-                option.textContent = searchHistory[i];
-                sandwichHistorySelect.appendChild(option);
-            }
-        }
+        // function populateSandwichHistory() {
+        //     sandwichHistorySelect.innerHTML = "<option>Sandwich History</option>";
+        //     for (var i = 0; i < searchHistory.length; i++) {
+        //         var option = document.createElement("option");
+        //         option.textContent = searchHistory[i];
+        //         sandwichHistorySelect.appendChild(option);
+        //     }
+        // }
 
 
 
@@ -154,15 +165,6 @@ init();
 //generates the sandwich string to be placed onto the page
 function generateSandwich() {
   var sandwichMsg = `Bon appettit! We call this one "${myAnimal} con ${myPlant}" sandwich!\nEnjoy your scrumptuous sandwich!\nThis particular sandwich is quite popular in ${myCountry}`;
-  outputBox.textContent = sandwichMsg;
-
-  // Show loading image
-  outputBox.innerHTML = ""; // Clear the output box
-  outputBox.appendChild(loadingPlaceholder);
-
-  // Hide loading image and show generated sammie
-  loadingPlaceholder.classList.remove("is-hidden");
-  outputBox.removeChild(loadingPlaceholder);
   outputBox.textContent = sandwichMsg;
 
   //pregen next sandwich
@@ -180,10 +182,15 @@ function generateSandwich() {
   var sandwichIng = `${myAnimal} con ${myPlant}`;
 
   //makes certain that our history array is not larger than our historyNumber
-  while (searchHistory.length >= historyNumber) {
-    searchHistory.pop();
+  if(searchHistory != null){
+    while (searchHistory.length >= historyNumber) {
+      searchHistory.pop();
+    }
   }
-  searchHistory.unshift(sandwichIng);
+
+  if(searchHistory != null){
+    searchHistory.unshift(sandwichIng);
+  } else { searchHistory[0] = sandwichIng; }
 
   //populate UI then save to localStorage
   populateHistory();
@@ -192,13 +199,7 @@ function generateSandwich() {
   savingHistory();
 }
 
-//unhides the button, meant to be called as a parameter to setTimeout()
-function unhideButton() {
-  console.log(`Testing`);
-  loadingPlaceholder.setAttribute("class", "is-hidden");
-  submitCont.classList.remove("is-hidden");
-  submitCont.setAttribute("class", "is-centered");
-}
+
 
 //the star of the show
 submitBtn.addEventListener("click", generateSandwich);
