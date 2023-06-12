@@ -21,8 +21,11 @@ var submitBtn = document.getElementById("submit-btn");
 var submitCont = document.getElementById("submit-container");
 var submitSection = document.getElementById("submit-section");
 var hiddenTimer = 10000; // how long the button element is hidden for (in ms)
-var loadingPlaceholder = document.createElement("p");
-loadingPlaceholder.textContent = "Loading... Please Wait...";
+var loadingPlaceholder = document.createElement("img");
+loadingPlaceholder.src =
+  "https://cdn.pixabay.com/photo/2012/04/13/01/51/hamburger-31775_1280.png";
+
+  // gets a random animal for the user";
 
 // gets a random animal for the user
 function getAnimal(taxon, randOffset, randIndex) {
