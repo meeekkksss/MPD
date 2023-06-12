@@ -149,6 +149,7 @@ function generateSandwich() {
   var sandwichMsg = `Bon appettit! We call this one "${myAnimal} con ${myPlant}" sandwich!\nEnjoy your scrumptuous sandwich!\nThis particular sandwich is quite popular in ${myCountry}`;
   outputBox.textContent = sandwichMsg;
 
+
   //pregen next sandwich
   generateIngredients();
 
