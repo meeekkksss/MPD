@@ -103,12 +103,14 @@ function generateIngredients() {
 // upon generation of webpage, the user will be presented with
 // a box containing their last six generated sandwiches
 function populateHistory() {
-  if(searchHistory != null){
+  if (searchHistory != null) {
     for (var i = 0; i < searchHistory.length; i++) {
       var currentEl = document.getElementById(`sandwich-${i}`);
       currentEl.textContent = searchHistory[i];
-    } 
-  } else { return; }
+    }
+  } else {
+    return;
+  }
 }
 
 // saves user's sandwiches to local data
