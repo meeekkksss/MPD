@@ -1,5 +1,6 @@
 //API related variables
-var animalAPI = "https://api.gbif.org/v1/species/search?rank=SPECIES&highertaxon_key=359&limit=100&offset=0"; //the end offsets the data
+var animalAPI =
+  "https://api.gbif.org/v1/species/search?rank=SPECIES&highertaxon_key=359&limit=100&offset=0"; //the end offsets the data
 var plantsEntryRange = 30;
 var animalsOffset = 5000;
 var plantsOffset = 5000;
@@ -16,13 +17,12 @@ var myCountry = "";
 
 //element related variables
 var outputBox = document.getElementById("output-box");
-var submitBtn = document.getElementById('submit-btn');
-var submitCont = document.getElementById('submit-container');
-var submitSection = document.getElementById('submit-section');
+var submitBtn = document.getElementById("submit-btn");
+var submitCont = document.getElementById("submit-container");
+var submitSection = document.getElementById("submit-section");
 var hiddenTimer = 10000; // how long the button element is hidden for (in ms)
-var loadingPlaceholder = document.createElement("p")
-loadingPlaceholder.textContent =
-  "Loading... Please Wait...";
+var loadingPlaceholder = document.createElement("p");
+loadingPlaceholder.textContent = "Loading... Please Wait...";
 
 // gets a random animal for the user
 function getAnimal(taxon, randOffset, randIndex) {
@@ -145,11 +145,11 @@ function generateSandwich() {
 }
 
 //unhides the button, meant to be called as a parameter to setTimeout()
-function unhideButton(){
+function unhideButton() {
   console.log(`Testing`);
-  loadingPlaceholder.setAttribute('class', 'is-hidden');
-  submitCont.classList.remove('is-hidden');
-  submitCont.setAttribute('class', 'is-centered');  
+  loadingPlaceholder.setAttribute("class", "is-hidden");
+  submitCont.classList.remove("is-hidden");
+  submitCont.setAttribute("class", "is-centered");
 }
 
 //the star of the show
